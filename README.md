@@ -25,4 +25,8 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=E:/softwares/vcpkg/scripts/buildsystems/vcpkg.cm
 
 ```
 
+you must Reassign follow path:
+
+`-DCMAKE_TOOLCHAIN_FILE=E:/softwares/vcpkg/scripts/buildsystems/vcpkg.cmake`
+
 you will get .sln file in build, open it to build.
