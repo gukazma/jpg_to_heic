@@ -36,7 +36,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
-
+#include "Core/cmdline.h"
 #include <libheif/heif.h>
 extern "C" {
 	// Prevent duplicate definition for libjpeg-turbo v2.0
@@ -327,9 +327,16 @@ std::shared_ptr<heif_image> loadJPEG(const char* filename)
 }
 int main(int argc, char** argv)
 {
-	int quality = 50;
+	cmdline::parser a;
+	a.add<std::string>("input_filename", 'i', "input file name", true, "");
+	a.add<std::string>("output_filename", 'o', "output file name", true, "");
+	a.add<int>("quality", 'q', "output quality", false, 50, cmdline::range(0, 100));
+	a.parse_check(argc, argv);
+
+	int quality = a.get<int>("quality");
 	bool lossless = false;
-	std::string output_filename;
+	std::string input_filename = a.get<std::string>("input_filename");
+	std::string output_filename = a.get<std::string>("output_filename");
 	int logging_level = 0;
 	bool option_show_parameters = false;
 	int thumbnail_bbox_size = 0;
@@ -341,7 +348,7 @@ int main(int argc, char** argv)
 
 	std::shared_ptr<heif_image> image;
 
-	image = loadJPEG("D:/datas/imgs/aaa1.jpg");
+	image = loadJPEG(input_filename.c_str());
 
 	heif_context* ctx = heif_context_alloc();
 
@@ -350,14 +357,14 @@ int main(int argc, char** argv)
 	heif_context_get_encoder_for_format(ctx, heif_compression_HEVC, &encoder);
 
 	// set the encoder parameters
-	heif_encoder_set_lossy_quality(encoder, 50);
+	heif_encoder_set_lossy_quality(encoder, quality);
 
 	// encode the image
 	heif_context_encode_image(ctx, image.get(), encoder, nullptr, nullptr);
 
 	heif_encoder_release(encoder);
 
-	heif_context_write_to_file(ctx, "output.heic");
+	heif_context_write_to_file(ctx, output_filename.c_str());
 
 	return 0;
 }
