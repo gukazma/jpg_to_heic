@@ -29,11 +29,11 @@ you must reassign follow path:
 
 `-DCMAKE_TOOLCHAIN_FILE=E:/softwares/vcpkg/scripts/buildsystems/vcpkg.cmake`
 
-you will get .sln file in build, open it to build.
+``.sln`` file will generate in build directory. open it by Visual Studio and generate is.
 
 ### How to use
 
-Executable file will in jpg_to_heic/out/bin/
+Executable file will be in jpg_to_heic/out/bin/
 
 Type follow command to know usage;
 
