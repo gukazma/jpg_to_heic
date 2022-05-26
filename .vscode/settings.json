@@ -4,4 +4,7 @@
         "-DCMAKE_TOOLCHAIN_FILE=E:/softwares/vcpkg/scripts/buildsystems/vcpkg.cmake",
         "-DVCPKG_TARGET_TRIPLET=x64-windows",
     ],
+    "files.associations": {
+        "types": "cpp"
+    },
 }   
