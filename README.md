@@ -1,42 +1,45 @@
-# Jpeg To Heic
+<!--
+ * @Author       : gukazma && gukazma@proton.me
+ * @Date         : 2023-06-03 22:30:50
+ * @FilePath     : \CppTemplateProject\README.md
+ * @Description  : 
+ * MIT License
+ * 
+ * Copyright (c) 2023 gukazma
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files, to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * 
+-->
+# Cpp Template Project
 
+## Optional dependencies
+[llvm-project](https://github.com/llvm/llvm-project/releases)
 
-### How to build
+Clang format formatting code
 
-install vcpkg
+[Graphviz](https://graphviz.org/download/)
 
-install libheif and libjpeg by vcpkg
-```
-vcpkg install libjpeg-turbo:x64-windows
-vcpkg install libheif:x64-windows
-```
+Generate library dependency graph
 
+[Doxygen](https://www.doxygen.nl/download.html)
+
+Generate Code Document
+
+## How to use it
 ```bash
-git clone https://github.com/StoneHappy/jpg_to_heic.git
-
-cd jpg_to_heic
+pip install conan==1.62
 
 mkdir build
 
 cd build
 
-cmake .. -DCMAKE_TOOLCHAIN_FILE=E:/softwares/vcpkg/scripts/buildsystems/vcpkg.cmake
- -DVCPKG_TARGET_TRIPLET=x64-windows
-
-```
-
-you must reassign follow path:
-
-`-DCMAKE_TOOLCHAIN_FILE=E:/softwares/vcpkg/scripts/buildsystems/vcpkg.cmake`
-
-``.sln`` file will generate in build directory. open it by Visual Studio and generate is.
-
-### How to use
-
-Executable file will be in jpg_to_heic/out/bin/
-
-Type follow command to know usage;
-
-```bash
-.\jpgToHeic.exe -?
+cmake ..
 ```
