@@ -1,1 +1,1 @@
-add_subdirectory(Demo)
+add_subdirectory(jpg2heic)

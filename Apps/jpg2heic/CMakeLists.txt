@@ -1,4 +1,4 @@
-set(TARGET_NAME JPGToHeicCmdline)
+set(TARGET_NAME jpg2heic)
 
 file(GLOB_RECURSE HEADER_FILES "*.h")
 file(GLOB_RECURSE HPP_FILES "*.hpp")
