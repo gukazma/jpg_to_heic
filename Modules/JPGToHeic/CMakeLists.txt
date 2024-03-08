@@ -21,6 +21,8 @@ target_link_libraries(${TARGET_NAME}
     PUBLIC
     libheif::heif
     libjpeg-turbo::jpeg-static
+    libsvtav1::libsvtav1
+    libx265::libx265
           )
 
 target_include_directories(

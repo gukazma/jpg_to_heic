@@ -1,5 +1,6 @@
 #include "JpgToHeic.h"
 #include "LoadJpeg.h"
+#include "encoder_x265.h"
 void JpgToHeic(const std::string& input_filename, const std::string& output_filename, int quality)
 {
 	std::shared_ptr<heif_image> image;
@@ -7,6 +8,7 @@ void JpgToHeic(const std::string& input_filename, const std::string& output_file
 	image = loadJPEG(input_filename.c_str());
 
 	heif_context* ctx = heif_context_alloc();
+    heif_register_encoder_plugin(get_encoder_plugin_x265());
 
 	// get the default encoder
 	heif_encoder* encoder;
