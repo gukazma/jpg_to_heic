@@ -92,7 +92,7 @@ if(ENABLE_DOCS)
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/../Docs)
   build_docs(PROCESS_DOXYFILE TRUE DOXYFILE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Docs/Doxyfile.in)
 endif()
-set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT JPGToHeicCmdline)
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT jpg2heic)
 
 if(CLANG_FORMAT_EXE)
   message(STATUS "Found clang format ............ Configuring ..............")

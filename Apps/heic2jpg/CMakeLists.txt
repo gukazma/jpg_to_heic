@@ -1,4 +1,4 @@
-set(TARGET_NAME jpg2heic)
+set(TARGET_NAME heic2jpg)
 
 file(GLOB_RECURSE HEADER_FILES "*.h")
 file(GLOB_RECURSE HPP_FILES "*.hpp")

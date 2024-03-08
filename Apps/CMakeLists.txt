@@ -1,1 +1,2 @@
 add_subdirectory(jpg2heic)
+add_subdirectory(heic2jpg)
