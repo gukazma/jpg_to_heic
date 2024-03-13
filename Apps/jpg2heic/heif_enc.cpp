@@ -425,13 +425,14 @@ int main(int argc, char** argv)
   bool force_enc_av1f = false;
   bool force_enc_uncompressed = false;
   bool crop_to_even_size = false;
+  std::string input_filename;
 
   std::vector<std::string> raw_params;
 
 
   while (true) {
     int option_index = 0;
-    int c = getopt_long(argc, argv, "hq:Lo:vPp:t:b:AEe:C:"
+    int c = getopt_long(argc, argv, "hq:Li:o:vPp:t:b:AEe:C:"
 #if false && WITH_UNCOMPRESSED_CODEC
         "U"
 #endif
@@ -444,7 +445,10 @@ int main(int argc, char** argv)
         show_help(argv[0]);
         return 0;
       case 'q':
-        quality = atoi(optarg);
+        quality = atoi(optarg); 
+        break;
+      case 'i': 
+        input_filename = optarg;
         break;
       case 'L':
         lossless = true;
@@ -559,10 +563,10 @@ int main(int argc, char** argv)
     return 0;
   }
 
-  if (optind > argc - 1) {
+  /*if (optind > argc - 1) {
     show_help(argv[0]);
     return 0;
-  }
+  }*/
 
 
   // --- determine output compression format (from output filename or command line parameter)
@@ -643,8 +647,7 @@ int main(int argc, char** argv)
 
   std::shared_ptr<heif_image> primary_image;
 
-  for (; optind < argc; optind++) {
-    std::string input_filename = argv[optind];
+  //for (; optind < argc; optind++) {
 
     if (output_filename.empty()) {
       std::string filename_without_suffix;
@@ -853,7 +856,7 @@ int main(int argc, char** argv)
 
     heif_image_handle_release(handle);
     heif_encoding_options_free(options);
-  }
+  //}
 
   heif_encoder_release(encoder);
 

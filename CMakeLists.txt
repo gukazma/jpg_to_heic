@@ -36,7 +36,7 @@ conan_basic_setup(TARGETS)
 
 
 option(ENABLE_DOCS "Enable doxygen docs" ON)
-option(ENABLE_DEBUG "Enable debug" OFF)
+option(ENABLE_DEBUG "Enable debug" ON)
 # just for qt
 # set(CMAKE_AUTOUIC ON)
 # set(CMAKE_AUTOMOC ON)

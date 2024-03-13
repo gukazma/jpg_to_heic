@@ -215,12 +215,14 @@ int main(int argc, char** argv)
   int quality = -1;  // Use default quality.
   bool strict_decoding = false;
   const char* decoder_id = nullptr;
+  std::string input_filename;
+  std::string output_filename;
 
   UNUSED(quality);  // The quality will only be used by encoders that support it.
   //while ((opt = getopt(argc, argv, "q:s")) != -1) {
   while (true) {
     int option_index = 0;
-    int c = getopt_long(argc, argv, "hq:sd:C:", long_options, &option_index);
+    int c = getopt_long(argc, argv, "i:o:hq:sd:C:", long_options, &option_index);
     if (c == -1) {
       break;
     }
@@ -232,6 +234,12 @@ int main(int argc, char** argv)
       case 'd':
         decoder_id = optarg;
         break;
+      case 'i': 
+          input_filename = optarg; 
+          break;
+      case 'o': 
+          output_filename = optarg; 
+          break;
       case 's':
         strict_decoding = true;
         break;
@@ -272,14 +280,13 @@ int main(int argc, char** argv)
     return 0;
   }
 
-  if (optind + 2 > argc) {
-    // Need input and output filenames as additional arguments.
-    show_help(argv[0]);
-    return 5;
-  }
+  //if (optind + 2 > argc) {
+  //  // Need input and output filenames as additional arguments.
+  //  show_help(argv[0]);
+  //  return 5;
+  //}
 
-  std::string input_filename(argv[optind++]);
-  std::string output_filename(argv[optind++]);
+  
   std::string output_filename_stem;
   std::string output_filename_suffix;
 
