@@ -56,7 +56,7 @@
 #include "exif.h"
 #include "encoder_x265.h"
 #include "encoder_svt.h"
-
+#include <chrono>
 int master_alpha = 1;
 int thumb_alpha = 1;
 int list_encoders = 0;
@@ -688,6 +688,9 @@ int main(int argc, char** argv)
     }
 
     InputImage input_image;
+
+    auto start = std::chrono::high_resolution_clock::now();
+
     if (filetype == PNG) {
       input_image = loadPNG(input_filename.c_str(), output_bit_depth);
     }
@@ -697,6 +700,11 @@ int main(int argc, char** argv)
     else {
       input_image = loadJPEG(input_filename.c_str());
     }
+
+     auto end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> duration = end - start;
+    std::cout << "decode jpg: " << duration.count() << " s" << std::endl;
 
     std::shared_ptr<heif_image> image = input_image.image;
 
@@ -788,11 +796,16 @@ int main(int argc, char** argv)
 
 
     struct heif_image_handle* handle;
+    start = std::chrono::high_resolution_clock::now();
+
     error = heif_context_encode_image(context.get(),
                                       image.get(),
                                       encoder,
                                       options,
                                       &handle);
+    end = std::chrono::high_resolution_clock::now();
+    duration = end - start;
+    std::cout << "encode heic: " << duration.count() << " s" << std::endl;
     if (error.code != 0) {
       heif_encoding_options_free(options);
       std::cerr << "Could not encode HEIF/AVIF file: " << error.message << "\n";
