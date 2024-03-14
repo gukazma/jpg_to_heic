@@ -55,6 +55,7 @@
 #include "benchmark.h"
 #include "exif.h"
 #include "encoder_x265.h"
+#include "encoder_svt.h"
 
 int master_alpha = 1;
 int thumb_alpha = 1;
@@ -584,7 +585,7 @@ int main(int argc, char** argv)
   }
 
   if (compressionFormat == heif_compression_undefined) {
-    compressionFormat = heif_compression_HEVC;
+     compressionFormat = heif_compression_HEVC;
   }
 
 
@@ -599,6 +600,7 @@ int main(int argc, char** argv)
 
   heif_context* ctx = heif_context_alloc();
   heif_register_encoder_plugin(get_encoder_plugin_x265());
+  heif_register_encoder_plugin(get_encoder_plugin_svt());
 #define MAX_ENCODERS 10
   const heif_encoder_descriptor* encoder_descriptors[MAX_ENCODERS];
   int count = heif_get_encoder_descriptors(compressionFormat,
